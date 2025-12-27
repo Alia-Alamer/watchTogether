@@ -3,4 +3,6 @@
     <string name="text1">Find your next movie together</string>
     <string name="question">How many people are watching?</string>
     <string name="numberOfPeople">Enter number...</string>
+    <string name="text2">Every person will see all movies.</string>
+    <string name="continueBtn">Continue</string>
 </resources>
