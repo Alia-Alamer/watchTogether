@@ -5,4 +5,6 @@
     <string name="numberOfPeople">Enter number...</string>
     <string name="text2">Everyone will swipe through the movies</string>
     <string name="continueBtn">Continue</string>
+    <string name="addMovies">Add Movies</string>
+    <string name="movieList">Which movies are up for swiping?</string>
 </resources>
