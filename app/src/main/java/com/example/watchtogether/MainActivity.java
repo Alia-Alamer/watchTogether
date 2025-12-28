@@ -1,8 +1,10 @@
 package com.example.watchtogether;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Button;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         EditText numberOfPersons = findViewById(R.id.numberOfPersons);
         Button continueBtn = findViewById(R.id.continueBtn);
 
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
 
     }
 }
