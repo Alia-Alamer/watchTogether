@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int number = Integer.parseInt(input);
 
+                Intent intent = new Intent(MainActivity.this, AddMoviesActivity.class);
+                startActivity(intent);
             }
         });
 
