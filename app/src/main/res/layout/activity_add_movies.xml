@@ -106,6 +106,22 @@
 
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:id="@+id/startSwipingButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:text="@string/startSwipeBtn"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:backgroundTint="@color/orange_1"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/addMovieCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="24dp"
+                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
