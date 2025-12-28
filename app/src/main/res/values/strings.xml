@@ -8,4 +8,5 @@
     <string name="addMovies">Add Movies</string>
     <string name="movieList">Which movies are up for swiping?</string>
     <string name="movieInput">Enter Movie title...</string>
+    <string name="addBtn">+ Add Movie</string>
 </resources>

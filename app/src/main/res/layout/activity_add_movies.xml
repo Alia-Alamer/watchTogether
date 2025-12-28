@@ -79,6 +79,33 @@
 
             </androidx.cardview.widget.CardView>
 
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/addMovieCard"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                app:cardBackgroundColor="@color/blue_1"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintTop_toBottomOf="@id/inputCard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/addMovieButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/addBtn"
+                    android:textColor="@color/orange_1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+
+                    />
+
+            </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
