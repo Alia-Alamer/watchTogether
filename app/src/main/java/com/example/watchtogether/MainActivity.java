@@ -33,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String input = numberOfPersons.getText().toString();
+
+                if(input.isEmpty()){
+                    numberOfPersons.setError("Please enter number of People");
+                    return;
+                }
+
+                int number = Integer.parseInt(input);
 
             }
         });
