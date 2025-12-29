@@ -1,12 +1,16 @@
 package com.example.watchtogether;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class AddMoviesActivity extends AppCompatActivity {
 
@@ -20,5 +24,15 @@ public class AddMoviesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        EditText movieTitleInput = findViewById(R.id.movieTitleInput);
+        Button addMovieBtn = findViewById(R.id.addMovieButton);
+        Button startSwipingBtn = findViewById(R.id.startSwipingButton);
+
+        ArrayList<String> movieList = new ArrayList<>();
+
+
+
+
     }
 }
