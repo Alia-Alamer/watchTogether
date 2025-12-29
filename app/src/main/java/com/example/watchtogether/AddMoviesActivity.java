@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class AddMoviesActivity extends AppCompatActivity {
         });
 
         EditText movieTitleInput = findViewById(R.id.movieTitleInput);
-        Button addMovieBtn = findViewById(R.id.addMovieButton);
+        TextView addMovieBtn = findViewById(R.id.addMovieButton);
         Button startSwipingBtn = findViewById(R.id.startSwipingButton);
 
         ArrayList<String> movieList = new ArrayList<>();
@@ -48,6 +49,17 @@ public class AddMoviesActivity extends AppCompatActivity {
         });
 
 
+        startSwipingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (movieList.size() < 2){
+                    movieTitleInput.setError("Please add at least 2 movies");
+                    return;
+                }
+
+                //später > zur swipe activity wechseln
+            }
+        });
 
 
     }
