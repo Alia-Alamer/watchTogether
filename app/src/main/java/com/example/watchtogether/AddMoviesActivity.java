@@ -1,6 +1,7 @@
 package com.example.watchtogether;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,6 +31,21 @@ public class AddMoviesActivity extends AppCompatActivity {
         Button startSwipingBtn = findViewById(R.id.startSwipingButton);
 
         ArrayList<String> movieList = new ArrayList<>();
+
+        addMovieBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String movieTitle = movieTitleInput.getText().toString();
+
+                if(movieTitle.isEmpty()){
+                    movieTitleInput.setError("Please enter a movie Title");
+                    return;
+                }
+
+                movieList.add(movieTitle);
+                movieTitleInput.setText("");
+            }
+        });
 
 
 
