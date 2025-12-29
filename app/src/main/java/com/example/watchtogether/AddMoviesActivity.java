@@ -58,6 +58,7 @@ public class AddMoviesActivity extends AppCompatActivity {
                 }
 
                 //später > zur swipe activity wechseln
+                //TODO: die Liste der hinzugefügten filme zeigen
             }
         });
 
