@@ -10,4 +10,5 @@
     <string name="movieInput">Enter Movie title...</string>
     <string name="addBtn">+ Add Movie</string>
     <string name="startSwipeBtn">Start Swiping</string>
+    <string name="noMoviesYet">No movies added yet</string>
 </resources>

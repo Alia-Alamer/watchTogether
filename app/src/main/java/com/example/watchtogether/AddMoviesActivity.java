@@ -29,6 +29,7 @@ public class AddMoviesActivity extends AppCompatActivity {
 
         EditText movieTitleInput = findViewById(R.id.movieTitleInput);
         TextView addMovieBtn = findViewById(R.id.addMovieButton);
+        TextView movieListDisplay = findViewById(R.id.movieListDisplay);
         Button startSwipingBtn = findViewById(R.id.startSwipingButton);
 
         ArrayList<String> movieList = new ArrayList<>();
@@ -45,6 +46,8 @@ public class AddMoviesActivity extends AppCompatActivity {
 
                 movieList.add(movieTitle);
                 movieTitleInput.setText("");
+
+                updateMovieList(movieList, movieListDisplay);
             }
         });
 
@@ -58,10 +61,19 @@ public class AddMoviesActivity extends AppCompatActivity {
                 }
 
                 //später > zur swipe activity wechseln
-                //TODO: die Liste der hinzugefügten filme zeigen
             }
         });
+    }
 
-
+    public void updateMovieList(ArrayList<String> movieList, TextView display){
+        if (movieList.isEmpty()){
+            display.setText("No movies added yet");
+        } else {
+            String text = "Movies (" + movieList.size() + "):\n";
+            for(String movie : movieList){
+                text = text + "- " + movie + "\n";
+            }
+            display.setText(text);
+        }
     }
 }

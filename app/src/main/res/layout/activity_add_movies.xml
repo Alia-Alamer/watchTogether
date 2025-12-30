@@ -54,13 +54,27 @@
                 android:layout_marginTop="4dp"
                 />
 
+            <TextView
+                android:id="@+id/movieListDisplay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/noMoviesYet"
+                android:textColor="#9CA3AF"
+                android:textSize="14sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintTop_toBottomOf="@id/subtitleText2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"/>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/inputCard"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 app:cardBackgroundColor="@color/blue_1"
                 app:cardCornerRadius="8dp"
-                app:layout_constraintTop_toBottomOf="@id/subtitleText2"
+                app:layout_constraintTop_toBottomOf="@id/movieListDisplay"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="30dp">
