@@ -2,7 +2,7 @@ package com.example.watchtogether;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +21,10 @@ public class SwipeActivity extends AppCompatActivity {
     public static final String EXTRA_LIKES = "extra_likes";
 
     private TextView tvProgress;
-    private TextView tvTitle;
+    private TextView tvTitleOverlay;
     private ImageView ivPoster;
-    private Button btnNope;
-    private Button btnLike;
+    private ImageButton btnNope;
+    private ImageButton btnLike;
 
     private int playerCount = 2;
     private ArrayList<String> movies = new ArrayList<>();
@@ -46,7 +46,7 @@ public class SwipeActivity extends AppCompatActivity {
         });
 
         tvProgress = findViewById(R.id.tvProgress);
-        tvTitle = findViewById(R.id.tvTitle);
+        tvTitleOverlay = findViewById(R.id.titleOverlay);
         ivPoster = findViewById(R.id.ivPoster);
         btnNope = findViewById(R.id.btnNope);
         btnLike = findViewById(R.id.btnLike);
@@ -95,11 +95,8 @@ public class SwipeActivity extends AppCompatActivity {
     private void render() {
         String title = movies.get(currentMovieIndex);
 
-        tvProgress.setText(
-                "Player " + (currentPlayerIndex + 1) + "/" + playerCount +
-                        " • Movie " + (currentMovieIndex + 1) + "/" + movies.size()
-        );
-        tvTitle.setText(title);
+        tvProgress.setText("Spieler " + (currentPlayerIndex + 1) + " von " + playerCount);
+        tvTitleOverlay.setText(title);
 
         ivPoster.setImageResource(android.R.color.darker_gray);
     }

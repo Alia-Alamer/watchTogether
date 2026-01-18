@@ -3,6 +3,7 @@ package com.example.watchtogether;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,9 +40,24 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         Row row = items.get(position);
-        holder.tvRank.setText("#" + (position + 1));
+
+        holder.tvRankCircle.setText(String.valueOf(position + 1));
         holder.tvTitle.setText(row.title);
-        holder.tvLikes.setText("Likes: " + row.likes);
+        holder.tvLikes.setText(row.likes + " Likes");
+
+        int maxLikes = 0;
+        for (Row r : items) maxLikes = Math.max(maxLikes, r.likes);
+
+        int progress = (maxLikes == 0) ? 0 : (int) Math.round((row.likes * 100.0) / maxLikes);
+        holder.pbLikes.setProgress(progress);
+
+        if (position == 0) {
+            holder.itemRoot.setBackgroundResource(R.drawable.bg_result_item_selected);
+            holder.tvRankCircle.setBackgroundResource(R.drawable.bg_circle_btn_orange);
+        } else {
+            holder.itemRoot.setBackgroundResource(R.drawable.bg_result_item_normal);
+            holder.tvRankCircle.setBackgroundResource(R.drawable.bg_circle_btn_grey);
+        }
     }
 
     @Override
@@ -50,13 +66,17 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     }
 
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvRank, tvTitle, tvLikes;
+        View itemRoot;
+        TextView tvRankCircle, tvTitle, tvLikes;
+        ProgressBar pbLikes;
 
         VH(@NonNull View itemView) {
             super(itemView);
-            tvRank = itemView.findViewById(R.id.tvRank);
+            itemRoot = itemView.findViewById(R.id.itemRoot);
+            tvRankCircle = itemView.findViewById(R.id.tvRankCircle);
             tvTitle = itemView.findViewById(R.id.tvMovieTitle);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            pbLikes = itemView.findViewById(R.id.pbLikes);
         }
     }
 }

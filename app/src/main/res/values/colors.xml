@@ -7,4 +7,24 @@
     <color name="blue_3">#1A2633</color>
     <color name="orange_1">#FF6B35</color>
     <color name="orange_2">#E85A28</color>
+
+    <color name="bg_0">#0B1320</color>
+    <color name="bg_1">#121E2E</color>
+
+    <color name="card_outer">#1B2A3B</color>
+    <color name="card_inner">#223448</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#9FB0C3</color>
+
+    <color name="orange">#FF7A18</color>
+    <color name="orange_dark">#E96810</color>
+
+    <color name="btn_grey">#2B3A4C</color>
+    <color name="btn_grey_dark">#233142</color>
+
+    <color name="divider_soft">#2A3C50</color>
+
+    <color name="progress_track">#607183</color>
+    <color name="progress_fill">#FF7A18</color>
 </resources>
