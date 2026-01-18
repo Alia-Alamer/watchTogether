@@ -2,6 +2,9 @@ package com.example.watchtogether;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -25,6 +29,7 @@ public class SwipeActivity extends AppCompatActivity {
     private ImageView ivPoster;
     private ImageButton btnNope;
     private ImageButton btnLike;
+    private View posterFrame;
 
     private int playerCount = 2;
     private ArrayList<String> movies = new ArrayList<>();
@@ -32,6 +37,11 @@ public class SwipeActivity extends AppCompatActivity {
 
     private int currentPlayerIndex = 0;
     private int currentMovieIndex = 0;
+
+    private GestureDetectorCompat gestureDetector;
+
+    private static final int SWIPE_THRESHOLD_DISTANCE = 100;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,7 @@ public class SwipeActivity extends AppCompatActivity {
         ivPoster = findViewById(R.id.ivPoster);
         btnNope = findViewById(R.id.btnNope);
         btnLike = findViewById(R.id.btnLike);
+        posterFrame = findViewById(R.id.posterFrame);
 
         Intent intent = getIntent();
         playerCount = intent.getIntExtra(EXTRA_PLAYER_COUNT, 2);
@@ -65,16 +76,53 @@ public class SwipeActivity extends AppCompatActivity {
             return;
         }
 
-        render();
+        gestureDetector = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true; // MUSS true sein
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e1 == null || e2 == null) return false;
+
+                float diffX = e2.getX() - e1.getX();
+                float diffY = e2.getY() - e1.getY();
+
+                if (Math.abs(diffX) > Math.abs(diffY)
+                        && Math.abs(diffX) > SWIPE_THRESHOLD_DISTANCE
+                        && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                    if (diffX > 0) onSwipe(true);   // rechts = Like
+                    else onSwipe(false);            // links = Nope
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        View.OnTouchListener swipeTouchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return true;
+            }
+        };
+
+        posterFrame.setClickable(true);
+        posterFrame.setFocusable(true);
+        posterFrame.setOnTouchListener(swipeTouchListener);
+
+        ivPoster.setOnTouchListener(swipeTouchListener);
 
         btnNope.setOnClickListener(v -> onSwipe(false));
         btnLike.setOnClickListener(v -> onSwipe(true));
+
+        render();
     }
 
     private void onSwipe(boolean liked) {
-        if (liked) {
-            likes[currentMovieIndex] = likes[currentMovieIndex] + 1;
-        }
+        if (liked) likes[currentMovieIndex]++;
 
         if (currentMovieIndex < movies.size() - 1) {
             currentMovieIndex++;
