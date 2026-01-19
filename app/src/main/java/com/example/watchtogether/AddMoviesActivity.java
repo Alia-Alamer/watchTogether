@@ -12,12 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class AddMoviesActivity extends AppCompatActivity {
 
     private int personCount = 2;
+    private ArrayList<String> movieList;
+    private MovieListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +39,21 @@ public class AddMoviesActivity extends AppCompatActivity {
 
         EditText movieTitleInput = findViewById(R.id.movieTitleInput);
         TextView addMovieBtn = findViewById(R.id.addMovieButton);
-        TextView movieListDisplay = findViewById(R.id.movieListDisplay);
         Button startSwipingBtn = findViewById(R.id.startSwipingButton);
+        RecyclerView rvMovies = findViewById(R.id.rvMovies);
 
-        ArrayList<String> movieList = new ArrayList<>();
+        movieList = new ArrayList<>();
+
+        adapter = new MovieListAdapter(movieList, position -> {
+            if (position >= 0 && position < movieList.size()) {
+                movieList.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, movieList.size());
+            }
+        });
+
+        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        rvMovies.setAdapter(adapter);
 
         addMovieBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +67,9 @@ public class AddMoviesActivity extends AppCompatActivity {
 
                 movieList.add(movieTitle);
                 movieTitleInput.setText("");
-                updateMovieList(movieList, movieListDisplay);
+
+                adapter.notifyItemInserted(movieList.size() - 1);
+                rvMovies.scrollToPosition(movieList.size() - 1);
             }
         });
 
@@ -70,19 +87,5 @@ public class AddMoviesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        updateMovieList(movieList, movieListDisplay);
-    }
-
-    public void updateMovieList(ArrayList<String> movieList, TextView display) {
-        if (movieList.isEmpty()) {
-            display.setText("No movies added yet");
-        } else {
-            String text = "Movies (" + movieList.size() + "):\n";
-            for (String movie : movieList) {
-                text = text + "- " + movie + "\n";
-            }
-            display.setText(text);
-        }
     }
 }
